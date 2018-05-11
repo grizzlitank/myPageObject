@@ -20,7 +20,7 @@ public class ElectronicsPage extends BasePage{
         Formatter f = new Formatter();
 
         if (name.equals("Наушники")){
-            product = driver.findElement(By.xpath("html/body/div[1]/div[4]/div[1]/div/div[2]/div/a[1]"));
+            product = driver.findElement(By.xpath(".//a[contains(text(), 'Портативная техника')]/following-sibling::div/a[contains(text(), 'Наушники')]"));
             Stash.put("Наушники", name);
         } else{
             product = driver.findElement(By.xpath(f.format(productXpath1, name).toString()));
