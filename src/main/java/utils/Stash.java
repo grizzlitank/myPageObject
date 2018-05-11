@@ -30,5 +30,10 @@ public class Stash {
         return (WebDriver) stash.get("driver");
     }
 
+    public static boolean exist(){
+        if(stash.containsKey("Наушники"))return true;
+        else return false;
+    }
+
 
 }

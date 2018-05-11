@@ -13,7 +13,10 @@ public class SearchResultPage extends BasePage {
 
 
     @FindBy(xpath = ".//div[@class='n-snippet-card2__title']")
-    List<WebElement> results;
+    List<WebElement> results1;
+
+    @FindBy(xpath = ".//div[@class='n-snippet-cell2__title']")
+    List<WebElement> results2;
 
     @FindBy(xpath = ".//input[@id='header-search']")
     public WebElement search;
@@ -22,8 +25,14 @@ public class SearchResultPage extends BasePage {
     public WebElement searchButton;
 
     public TitlePage check_and_save_and_search(){
-        Assert.assertEquals("Количество записей соответствует 12", 48, results.size());
-        String title = results.get(0).findElement(By.xpath(".//a")).getText();
+        String title = "";
+        if(Stash.exist()) {
+            Assert.assertEquals("Количество записей соответствует 12", 48, results2.size());
+            title = results2.get(0).findElement(By.xpath(".//a")).getText();
+        } else {
+            Assert.assertEquals("Количество записей соответствует 12", 48, results1.size());
+            title = results1.get(0).findElement(By.xpath(".//a")).getText();
+        }
         Stash.put("Название", title);
         search.sendKeys(title);
         searchButton.click();
